@@ -1,5 +1,6 @@
 class Solution(object):
     def containsDuplicate(self, nums):
+        nums.sort()
         d={}
         for i in nums:
             if(i in d):
