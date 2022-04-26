@@ -1,18 +1,22 @@
-class Solution {    //not mine jsut to test
+//sliding window technique
+class Solution {
     public int maxProfit(int[] prices) {
-        int lsf = Integer.MAX_VALUE;
-        int op = 0;
-        int pist = 0;
+        int left=0;
+        int right=1;
+        int maxProf=0;
         
-        for(int i = 0; i < prices.length; i++){
-            if(prices[i] < lsf){
-                lsf = prices[i];
+        while(left<right && right<prices.length){
+            int curProf=prices[right]-prices[left];
+            
+            if(prices[left]<prices[right]){
+                maxProf=Math.max(curProf,maxProf);
+            }else{
+                left=right;
             }
-            pist = prices[i] - lsf;
-            if(op < pist){
-                op = pist;
-            }
+            
+            right++;
         }
-        return op;
+        
+        return maxProf;
     }
 }
