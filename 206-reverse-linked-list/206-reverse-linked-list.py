@@ -3,12 +3,9 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
 class Solution(object):
     def reverseList(self, head):
-        
-        hi=ListNode(0, next)
-
-        
         if not head: return None
         if not head.next: return head
         
@@ -17,9 +14,8 @@ class Solution(object):
         
         while hold!=None:
             temp=ListNode(myList.val, myList.next)
-            holdNode=ListNode(hold.val, None)
             
-            myList=holdNode
+            myList=ListNode(hold.val, None)
             myList.next=temp
             
             hold=hold.next
