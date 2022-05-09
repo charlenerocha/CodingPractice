@@ -17,9 +17,8 @@ class Solution {
         
         while(hold!=null){
             ListNode temp=myList;
-            ListNode holdNode=new ListNode(hold.val);
             
-            myList=holdNode;
+            myList=new ListNode(hold.val);
             myList.next=temp;
             
             hold=hold.next;
