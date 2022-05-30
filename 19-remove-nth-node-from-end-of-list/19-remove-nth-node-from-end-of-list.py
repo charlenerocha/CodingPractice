@@ -21,7 +21,6 @@ class Solution(object):
             counter=counter+1
             follow=follow.next
         
-        print counter
         preIndex=counter-n-1
         if preIndex<0: return head.next
         follow=head;
