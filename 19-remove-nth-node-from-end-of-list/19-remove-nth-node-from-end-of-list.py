@@ -33,5 +33,4 @@ class Solution(object):
             follow=follow.next
             
         return head
-        
                 
