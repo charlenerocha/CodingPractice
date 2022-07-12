@@ -5,56 +5,31 @@ class Solution(object):
         :rtype: int
         """
         
-#         UNOPTIMIZED SOLUTION
+        length = len(height)
+        if length < 3:
+            return 0
         
-#         length = len(height)
-#         if length < 3:
-#             return 0
+        totalWater = 0
+        maxLeft, maxRight = 0, 0
+        left, right = 0, length - 1
         
-#         def findMaxLeft(right):
-#             maxLeft = right
+        while left < right:
             
-#             for i in range(right + 1, length):
-#                 if height[i] > height[maxLeft]:
-#                     maxLeft = i
+            if height[left] < height[right]:
+                if maxLeft > height[left]:
+                    above = maxLeft - height[left]
+                    totalWater = totalWater + above
                     
-#             return maxLeft
-        
-        
-#         totalHeight = 0
-#         maxRight, maxLeft = 0, findMaxLeft(2)
-        
-#         for i in range(1, length - 1):
-#             above = min(height[maxRight], height[maxLeft]) - height[i]
-            
-#             if above > 0:
-#                 totalHeight = totalHeight + above
+                maxLeft = max(maxLeft, height[left])
+                left = left + 1
                 
-#             if height[i] > height[maxRight]:
-#                 maxRight = i
-                
-#             if i + 1 == maxLeft and i + 1 < length - 1:
-#                 maxLeft = findMaxLeft(i + 2)
-        
-#         return totalHeight
-
-
-        if len(height) <= 2: return 0
-        n = len(height)
-        maxLeft, maxRight = height[0], height[n-1]
-        left, right = 1, n - 2
-        ans = 0
-        while left <= right:
-            if maxLeft < maxRight:
-                if height[left] > maxLeft:
-                    maxLeft = height[left]
-                else:
-                    ans += maxLeft - height[left]
-                left += 1
             else:
-                if height[right] > maxRight:
-                    maxRight = height[right]
-                else:
-                    ans += maxRight - height[right]
-                right -= 1
-        return ans
+                if maxRight > height[right]:
+                    above = maxRight - height[right]
+                    totalWater = totalWater + above
+                    
+                maxRight = max(maxRight, height[right])
+                right = right - 1
+                
+        
+        return totalWater
