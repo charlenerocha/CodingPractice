@@ -5,9 +5,14 @@ class Solution(object):
         :rtype: int
         """
         
-        #recursive solution
-        
         if n <= 1:
             return n
         
-        return self.fib(n - 1) + self.fib(n - 2)
+        prev, cur = 0, 1
+        
+        for i in range(n - 1):
+            temp = prev
+            prev = cur
+            cur = cur + temp
+            
+        return cur
