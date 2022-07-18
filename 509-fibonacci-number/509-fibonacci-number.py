@@ -1,18 +1,16 @@
 class Solution(object):
+    fibs = {0:0, 1:1}
+    
     def fib(self, n):
         """
         :type n: int
         :rtype: int
         """
         
-        if n <= 1:
-            return n
+        if n in self.fibs:
+            return self.fibs[n]
         
-        prev, cur = 0, 1
+        self.fibs[n] = self.fibs[n - 1] + self.fibs[n - 2]
         
-        for i in range(n - 1):
-            temp = prev
-            prev = cur
-            cur = cur + temp
+        return self.fibs[n]
             
-        return cur
