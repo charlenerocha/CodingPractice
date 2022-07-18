@@ -7,13 +7,7 @@ class Solution(object):
         
         #recursive solution
         
-        def fibNum(n):
-            if n == 0:
-                return 0
-
-            if n == 1:
-                return 1
-
-            return fibNum(n - 1) + fibNum(n - 2)
+        if n <= 1:
+            return n
         
-        return fibNum(n)
+        return self.fib(n - 1) + self.fib(n - 2)
