@@ -11,25 +11,29 @@ class Solution(object):
         :rtype: ListNode
         """
         
-        head = added = ListNode(0)
+        first = l1
+        second = l2
         
+        head = ListNode()
+        myList = head
         carryOver = 0
         
-        while l1 or l2:
-            x = 0 if l1 is None else l1.val
-            y = 0 if l2 is None else l2.val
+        while first or second or carryOver != 0:
+            sum = 0
             
-            sum = carryOver + x + y
+            if first:
+                sum = first.val
+                first = first.next
+            if second:
+                sum = sum + second.val
+                second = second.next
+                
+            sum = sum + carryOver
+            
+            myList.next = ListNode(sum % 10, None)
+            myList = myList.next
+            
             carryOver = sum / 10
             
-            added.next = ListNode(sum % 10)
-                
-            added = added.next
-            l1 = None if l1 is None else l1.next
-            l2 = None if l2 is None else l2.next
-            
-        if carryOver > 0:
-            added.next = ListNode(carryOver, None)
-            
         return head.next
-                
+            
