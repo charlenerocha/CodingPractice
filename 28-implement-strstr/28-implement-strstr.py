@@ -12,7 +12,7 @@ class Solution(object):
         find = 0
         
         for i in range(len(haystack)):
-            if haystack[i : len(needle) + i] == needle:
+            if haystack[i] == needle[0] and haystack[i : len(needle) + i] == needle:
                 return i
             
         return -1
