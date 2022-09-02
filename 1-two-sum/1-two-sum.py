@@ -1,9 +1,8 @@
 class Solution(object):
     def twoSum(self, nums, target):
-        trackedNums = {}
+        haveNums = {}
         
         for i, num in enumerate(nums):
-            if target - num in trackedNums:
-                return [i, trackedNums[target - num]]
-            trackedNums[num] = i
-            
+            if target - num in haveNums:
+                return [i, haveNums[target - num]]
+            haveNums[num] = i
