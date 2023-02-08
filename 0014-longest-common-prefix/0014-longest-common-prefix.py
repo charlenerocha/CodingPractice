@@ -5,17 +5,21 @@ class Solution(object):
         :rtype: str
         """
         
+        # maxSize places a capacity on the return str
+        maxSize = len(strs[0])
+        for str in strs:
+            maxSize = min(maxSize, len(str))
+        if maxSize == 0:
+            return ""
+        
         index = 0
         common = ""
 
-        while True:
-            if index < len(strs[0]):
-                newCommon = strs[0][index]          # new character addition
-            else:
-                return common
+        while index < maxSize:
+            newCommon = strs[0][index]          # new character addition
 
             for str in strs:
-                if index >= len(str) or str[index] != newCommon:
+                if str[index] != newCommon:
                     return common
             
             common = common + newCommon
