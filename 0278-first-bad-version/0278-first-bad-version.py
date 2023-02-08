@@ -1,26 +1,18 @@
 # The isBadVersion API is already defined for you.
-# @param version, an integer
-# @return a bool
-# def isBadVersion(version):
+# def isBadVersion(version: int) -> bool:
 
-class Solution(object):
-    def firstBadVersion(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
-            
-        low, high=1, n
-        baddie=n
-        
-        while low <= high:
-            mid = (high + low) // 2
-            
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        # creates a "mountain effect" ex. FFTTT
+        # we can use a binary search method to find the first occurance of T!
+
+        left, right = 1, n
+
+        while left < right:
+            mid = int((left + right) / 2)
             if isBadVersion(mid):
-                baddie=mid
-                high=mid-1
+                right = mid
             else:
-                low=mid+1
+                left = mid + 1
         
-        return baddie
-        
+        return right
