@@ -5,29 +5,24 @@ class Solution(object):
         :rtype: int
         """
         
-        # a square is "trapped" if it has a wall on the left and right side
-        # i'll create a map of the right wall and then find the left wall
-        # any overlap will get added to waterTrapped
-        
-        waterTrapped = {}
-        wall = 0
-        
-        # find right wall and add the wall in as well
-        maxWall = 0
-        for i, column in enumerate(height):
-            maxWall = max(maxWall, column)  # finds the highest right facing wall
-            wall += column                  # adds to the wall pieces that shouldnt be counted
-            waterTrapped[i] = maxWall
-            
-        maxWall = 0
-        waterCount = 0
-            
-        # find left wall
-        for i, column in enumerate(height[::-1]):
-            maxWall = max(maxWall, column)  # finds the highest left facing wall
-            waterCount += min(maxWall, waterTrapped[len(height) - 1 - i])
-            
-        return waterCount - wall
-    
+        # 2nd try
+        # for water to be "trapped" it needs a left and right wall higher than its own
+        highestLeftWall = {}
+        maxLeftWall = 0
 
+        # track the leftmost highest wall for each column
+        for i, waterLevel in enumerate(height):
+            maxLeftWall = max(maxLeftWall, waterLevel)
+            highestLeftWall[i] = maxLeftWall
 
+        maxRightWall = 0
+        waterTrapped = 0
+
+        # track the rightmost highest wall for each column (and compute the rainwater trapped)
+        for i, waterLevel in enumerate(height[::-1]):
+            maxRightWall = max(maxRightWall, waterLevel)
+
+            if min(maxRightWall, highestLeftWall[len(height) - 1 - i]) - waterLevel > 0:
+                waterTrapped += min(maxRightWall, highestLeftWall[len(height) - 1 - i]) - waterLevel
+            
+        return waterTrapped
