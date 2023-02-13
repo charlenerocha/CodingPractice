@@ -11,12 +11,16 @@ class Solution(object):
         :rtype: bool
         """
         
-        visited = {}
+        # tortoise and hare algorithm
         
-        while head:
-            if head in visited:
+        tort = head
+        if head:    hare = head.next
+        
+        while tort and hare:
+            if tort == hare:
                 return True
-            visited[head] = 0
-            head = head.next
+            
+            tort, hare = tort.next, hare.next
+            if hare:    hare = hare.next
             
         return False
