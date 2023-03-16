@@ -10,12 +10,14 @@ class Node:
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         
-        # make a deep copy of the list
-        old_node_to_new_node = {}       # new node and old node pair
         old_pointer = head
         new_pointer = Node(-1)
         new_head = new_pointer
         
+        # will track the new and old node pairs
+        old_node_to_new_node = {}
+        
+        # make a deep copy of the list with no random values
         while old_pointer:
             new_pointer.next = Node(old_pointer.val)
             new_pointer = new_pointer.next
@@ -24,7 +26,7 @@ class Solution:
             
         new_head = new_head.next
         
-        # add random pointers
+        # adds random pointers
         old_pointer = head
         new_pointer = new_head
         
