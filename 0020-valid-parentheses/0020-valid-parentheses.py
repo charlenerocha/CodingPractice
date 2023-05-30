@@ -1,19 +1,21 @@
 class Solution(object):
     def isValid(self, s):
-        stack=[]
-
-        for i in s:
-            if i=='(':
-                stack.append(')')
-            elif i=='[':
-                stack.append(']')
-            elif i=='{':
-                stack.append('}')
-            elif not stack:
-                return False
-            elif i!=stack[-1]:
-                return False
-            else:
-                stack.pop()
+        seenBrackets = []
+        openingBrackets = {"(", "{", "["}
+        bracketPairs = {
+            ")":"(",
+            "]":"[",
+            "}":"{",
+        }
         
-        return not stack
+        for bracket in s:
+            if bracket in openingBrackets:
+                seenBrackets.append(bracket)
+            elif len(seenBrackets) == 0:
+                return False
+            elif bracketPairs[bracket] == seenBrackets[-1]:
+                seenBrackets.pop()
+            else:
+                return False
+            
+        return len(seenBrackets) == 0
