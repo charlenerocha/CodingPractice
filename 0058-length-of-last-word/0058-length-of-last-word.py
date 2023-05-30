@@ -2,14 +2,19 @@ class Solution:
     def lengthOfLastWord(self, s: str) -> int:
         # "   fly me   to   the moon  "
         
-        length_last_word = 0
-        seen_word = False
-        index = len(s) - 1
+        # where the last letter of the last word is
+        lastWordIndex = len(s) - 1
         
-        while index >= 0 and (seen_word == False or (seen_word and s[index] != " ")):
-            if s[index] != " ":
-                seen_word = True
-                length_last_word += 1
-            index -= 1
+        while s[lastWordIndex] == " ":
+            if lastWordIndex < 0:
+                return 0
+            lastWordIndex -= 1
             
-        return length_last_word
+        lastWordCounter = 0
+        i = lastWordIndex
+        while s[i] != " " and i >= 0:
+            lastWordCounter += 1
+            i -= 1
+        
+        return lastWordCounter
+    
