@@ -1,5 +1,6 @@
 class Solution:
     def findMaxK(self, nums: List[int]) -> int:
+        nums = set(nums)
         while len(nums) > 0:
             if max(nums) * -1 in nums:
                 return max(nums)
