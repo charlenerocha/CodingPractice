@@ -4,8 +4,8 @@ class Solution:
         seen = {}
         
         for i, num in enumerate(nums):
-            if target - num in seen:
-                return [seen[target-num], i]
-            seen[num] = i
+            if num in seen:
+                return [seen[num], i]
+            seen[target - num] = i
             
         return [-1,-1]
