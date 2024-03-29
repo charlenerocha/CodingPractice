@@ -1,21 +1,18 @@
-class Solution(object):
-    def isValid(self, s):
-        seenBrackets = []
-        openingBrackets = {"(", "{", "["}
-        bracketPairs = {
-            ")":"(",
-            "]":"[",
-            "}":"{",
+class Solution:
+    def isValid(self, s: str) -> bool:
+        brackets = {
+            "{" : "}",
+            "[" : "]",
+            "(" : ")"
         }
-        
-        for bracket in s:
-            if bracket in openingBrackets:
-                seenBrackets.append(bracket)
-            elif len(seenBrackets) == 0:
-                return False
-            elif bracketPairs[bracket] == seenBrackets[-1]:
-                seenBrackets.pop()
+        seen = []
+
+        for c in s:
+            if c in brackets:
+                seen.append(brackets[c])
+            elif seen and c == seen[-1]:
+                seen.pop()
             else:
                 return False
-            
-        return len(seenBrackets) == 0
+
+        return len(seen) == 0
