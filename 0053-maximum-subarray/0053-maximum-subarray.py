@@ -1,15 +1,13 @@
+from typing import List
+
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        # DP approach
         
-        add_last = nums[0]
-        total = add_last
+        dp = [nums[0]]
+        total = nums[0]
         
         for i in range(1, len(nums)):
-            # last element is either included...
-            add_last = nums[i] + max(0, add_last)
-            
-            # or not included
-            total = max(total, add_last)
-            
-        return total
+            last = max(nums[i], nums[i] + dp[-1])
+            dp.append(last)
+    
+        return max(dp)
