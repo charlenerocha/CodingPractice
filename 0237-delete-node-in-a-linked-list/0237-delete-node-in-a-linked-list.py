@@ -14,10 +14,6 @@ class Solution:
         # "steal" the node.next value
         node.val = node.next.val
         
-        # recurively call deleteNode on the node after it
-        if node.next.next is not None:
-            self.deleteNode(node.next)
-        else:
-            # base case: node.next needs to be disconnected
-            node.next = None
+        # disconnect node.next
+        node.next = node.next.next
         
