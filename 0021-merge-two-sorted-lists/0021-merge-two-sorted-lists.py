@@ -20,8 +20,8 @@ class Solution:
             
         ptr = head
         
-        while list1 is not None or list2 is not None:
-            if list2 is None or (list1 is not None and list1.val < list2.val):
+        while list1 is not None and list2 is not None:
+            if list1.val < list2.val:
                 ptr.next = list1
                 list1 = list1.next
             else:
@@ -29,5 +29,9 @@ class Solution:
                 list2 = list2.next
             ptr = ptr.next
             
+        if list1 is not None:
+            ptr.next = list1
+        elif list2 is not None:
+            ptr.next = list2
             
         return head
